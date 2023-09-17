@@ -16,8 +16,9 @@ public class EmploymentController {
 
 
     @GetMapping("/{id}")
-    public Employment findEmployeeDetails(@PathVariable("id") String empId){
-        return employmentService.findEmplomentDetmails(empId);
+    public Employment findEmployeeDetails(@PathVariable("id") String empId,
+                                          @RequestHeader(Constants.Authorization) String accessToken    ){
+        return employmentService.findEmplomentDetmails(empId,accessToken);
     }
 
     @GetMapping

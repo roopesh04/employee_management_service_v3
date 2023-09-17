@@ -23,9 +23,9 @@ public class EmploymentService {
         return employmentDao.save(employee);
     }
 
-    public Employment findEmplomentDetmails(String empId){
+    public Employment findEmplomentDetmails(String empId,String accessToken){
         Optional<Employment> employmentDetails = employmentDao.findByEmpId(empId);
-
+        employeeAuthService.validateAccessToken(accessToken);
         if(employmentDetails.isPresent()) return employmentDetails.get();
         return null;
     }
