@@ -23,7 +23,6 @@ public class LoginService {
     EmployeeAuthService employeeAuthService;
 
     public ResponseDto generateAccessToken(LoginServiceDto loginServiceDto) {
-        System.out.println("recieved request");
         Optional<Employee> employee = employeeDao.findById(loginServiceDto.getEmpId());
         if (employee.isEmpty()) throw new RuntimeException("Employee Doesn't exit");
 
@@ -40,7 +39,7 @@ public class LoginService {
     }
 
     public String signOutUser(String accessToken){
-        String empId = employeeAuthService.validateAccessToken(accessToken);
+        employeeAuthService.validateAccessToken(accessToken);
         employeeAuthService.deleteAccessToken(accessToken);
         return "Sucessfull";
     }
