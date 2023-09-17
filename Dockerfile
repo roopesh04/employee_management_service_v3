@@ -15,7 +15,7 @@ COPY src ./src
 RUN mvn package
 
 # Stage 2: Create the production image
-FROM openjdk:11-jre-slim
+FROM adoptopenjdk:17-jre-hotspot
 WORKDIR /app
 
 # Copy the JAR file built in Stage 1
