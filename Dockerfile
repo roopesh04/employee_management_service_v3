@@ -15,7 +15,7 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Stage 2: Create the production image
-FROM adoptopenjdk:17-jre-hotspot
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file built in Stage 1
