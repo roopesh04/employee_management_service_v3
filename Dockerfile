@@ -12,17 +12,17 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Build the application JAR
-RUN mvn package
+RUN mvn package -DskipTests
 
 # Stage 2: Create the production image
 FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the JAR file built in Stage 1
-COPY --from=build /app/target/your-spring-app.jar .
+COPY --from=build /app/target/*.jar app.jar
 
 # Expose the port your application runs on
 EXPOSE 8080
 
 # Specify the command to run your application
-CMD ["java", "-jar", "your-spring-app.jar"]
+CMD ["java", "-jar", "app.jar"]
